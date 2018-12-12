@@ -1,0 +1,17 @@
+server:
+  port: 8033  #注册中心8001
+spring:
+  application:
+    name: spring-config-git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wwg2008123/spring-cloud-config/
+          search-paths: git-config
+          username: wwg2008123
+          password: wwg888888s
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/

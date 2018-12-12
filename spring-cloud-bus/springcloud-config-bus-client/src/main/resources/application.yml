@@ -1,0 +1,24 @@
+server:
+  port: 8045
+spring:
+  application:
+    name: config-bus-client   #spring.application.name：对应{application}部分
+  rabbitmq:
+    host: 192.168.65.130
+    port: 5672
+    username: wwg
+    password: 123456
+
+management:
+  endpoint:
+    bus-refresh:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+
+
+
+
+#spring.cloud.config.uri：配置中心的具体地址

@@ -1,0 +1,19 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: service-register-center
+
+eureka:
+  instance:
+    ip-address: 172.16.3.192
+    hostname: localhost
+  server:
+    enable-self-preservation: false
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+
