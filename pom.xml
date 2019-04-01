@@ -18,9 +18,14 @@
 
 
     <modules>
-        <module>springcloudeurekademo</module>
         <module>spring-config-git</module>
         <module>config-client-git</module>
+        <module>basic-package-common</module>
+        <module>springcloudeurekademo/service-demo01</module>
+        <module>springcloudeurekademo/service-demo02</module>
+        <module>springcloudeurekademo/service-register-center</module>
+        <module>springcloudeurekademo/service-consumer-demo01</module>
+        <module>sleuth</module>
     </modules>
 
     <properties>
@@ -79,6 +84,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.1.0.RELEASE</version>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+<!--                <dependencies>
+                    &lt;!&ndash;spring 热部署&ndash;&gt;
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>1.2.0.M1</version>
+                    </dependency>
+                </dependencies>-->
             </plugin>
         </plugins>
     </build>
