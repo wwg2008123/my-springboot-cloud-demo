@@ -7,12 +7,14 @@ datasource:
 spring:
   application:
     name: service-demo
+  #  zipkin:
+  #    base-url: http://localhost:9999
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     master:
       url: jdbc:mysql://192.168.65.130:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&pinGlobalTxToPhysicalConnection=true
       username: root
-      password: wwg123456
+      password: 123456
       # 下面为连接池的补充设置，应用到上面所有数据源中
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initialSize: 10
@@ -50,7 +52,7 @@ spring:
     slave:
       url: jdbc:mysql://192.168.65.132:3306/test?useUnicode=true&amp;characterEncoding=utf-8&amp;autoReconnect=true&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&pinGlobalTxToPhysicalConnection=true
       username: root
-      password: wwg123456
+      password: 123456
       # 下面为连接池的补充设置，应用到上面所有数据源中
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initialSize: 10
@@ -89,11 +91,11 @@ spring:
       enabled: true   #热部署生效
       additional-paths: src/maiin/java  #设置重启的目录
       additional-exclude: WEB-INF/**    #classpath目录下的WEB-INF文件夹内容修改不重启
-  rabbitmq:
-    host: 192.168.65.130
-    port: 5672
-    username: admin
-    password: 123456
+#  rabbitmq:
+#    host: 192.168.65.130
+#    port: 5672
+#    username: admin
+#    password: 123456
 
 
 druid:
@@ -119,6 +121,9 @@ redis:
 ---
 
 eureka:
+  #  instance:
+  #    prefer-ip-address: true
+  #    ip-address: 172.16.3.159
   client:
     service-url:
       defaultZone: http://localhost:8001/eureka/

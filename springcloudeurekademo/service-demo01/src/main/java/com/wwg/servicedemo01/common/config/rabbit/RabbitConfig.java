@@ -1,3 +1,4 @@
+/*
 package com.wwg.servicedemo01.common.config.rabbit;
 
 import org.springframework.amqp.core.*;
@@ -24,23 +25,25 @@ public class RabbitConfig {
     }
 
     @Bean
-    public DirectExchange directExchange(){
+    public DirectExchange directExchange() {
         return new DirectExchange(directExchangeName);
     }
 
     @Bean
-    public TopicExchange topicExchange(){
+    public TopicExchange topicExchange() {
         return new TopicExchange(topicExchangeName);
     }
+
     @Bean
-    Binding bindingDirectExchangeQueue(@Qualifier(queueOneName) Queue queueMessage, DirectExchange directExchange){
+    Binding bindingDirectExchangeQueue(@Qualifier(queueOneName) Queue queueMessage, DirectExchange directExchange) {
         return BindingBuilder.bind(queueMessage).to(directExchange).with("direct.message");
     }
 
     @Bean
-    Binding bindingTopicExchangeQueue(@Qualifier(queueTwoName) Queue queue,TopicExchange topicExchange){
+    Binding bindingTopicExchangeQueue(@Qualifier(queueTwoName) Queue queue, TopicExchange topicExchange) {
         return BindingBuilder.bind(queue).to(topicExchange).with("topic.order");
     }
 
 
 }
+*/

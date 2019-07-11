@@ -7,10 +7,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/wwg2008123/spring-cloud-config/
-          search-paths: git-config
+          uri: https://github.com/wwg2008123/projectconfig.git
           username: wwg2008123
           password: wwg888888s
+          search-paths: cfg*
 eureka:
   client:
     service-url:

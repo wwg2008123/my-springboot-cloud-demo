@@ -1,6 +1,7 @@
 package com.wwg.servicedemo01.common.interceptor;
 
-import org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter;
+//import org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter;
+
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -10,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Loginterceptor implements HandlerInterceptor {
     long startDt = System.currentTimeMillis();
+
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception{
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         startDt = System.currentTimeMillis();
         System.out.println("interceptor==>preHandle");
         return true;

@@ -11,7 +11,7 @@ import org.springframework.web.filter.CorsFilter;
  */
 @Configuration
 public class CorsConfig {
-    private CorsConfiguration buildConfig(){
+    private CorsConfiguration buildConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         //1允许服务端访问
         corsConfiguration.addAllowedOrigin("*");
@@ -23,10 +23,11 @@ public class CorsConfig {
         corsConfiguration.setAllowCredentials(true);
         return corsConfiguration;
     }
+
     @Bean
-    public CorsFilter corsFilter(){
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-        urlBasedCorsConfigurationSource.registerCorsConfiguration("**",buildConfig());
-        return new CorsFilter(urlBasedCorsConfigurationSource) ;
+        urlBasedCorsConfigurationSource.registerCorsConfiguration("**", buildConfig());
+        return new CorsFilter(urlBasedCorsConfigurationSource);
     }
 }

@@ -11,14 +11,16 @@ public interface UserMapper {
 
     /**
      * 查询用户
+     *
      * @return
      */
     User getUser(Map<String, Object> map);
 
     /**
      * 新增用户
+     *
      * @param map
      * @return
      */
-    int addUser(Map<String,Object> map);
+    int addUser(Map<String, Object> map);
 }

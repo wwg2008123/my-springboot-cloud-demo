@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class FilterConfig {
 
     @Bean
-    public FilterRegistrationBean logFilterRegistration(){
+    public FilterRegistrationBean logFilterRegistration() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new LogFilter());
         registrationBean.addUrlPatterns("/*");
-        registrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,swagger-*/**");
+        registrationBean.addInitParameter("exclusions", "*.js,*.gif,*.jpg,*.png,*.css,*.ico,swagger-*/**");
         registrationBean.setName("LogFilter");
         registrationBean.setOrder(2);
         return registrationBean;

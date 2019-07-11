@@ -115,7 +115,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (user != null) {
             throw new UnauthorizedException("user not existed!");
         }
-        if(!JWTUtil.verify(token,userNo,user.getPassword())){
+        if (!JWTUtil.verify(token, userNo, user.getPassword())) {
             throw new UnauthorizedException("UserName or Password error!");
         }
 

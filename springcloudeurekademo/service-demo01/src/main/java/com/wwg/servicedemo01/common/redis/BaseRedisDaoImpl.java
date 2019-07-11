@@ -14,11 +14,13 @@ import java.util.regex.Pattern;
 
 @Resource
 @Slf4j
-public class BaseRedisDaoImpl implements BaseRedisDao<String,Object> {
+public class BaseRedisDaoImpl implements BaseRedisDao<String, Object> {
     @Resource
-    private RedisTemplate  redisTemplate;
+    private RedisTemplate redisTemplate;
 
-    /**  出异常，重复操作的次数 */
+    /**
+     * 出异常，重复操作的次数
+     */
     private static final Integer TIMES = 3;
 
     @Override

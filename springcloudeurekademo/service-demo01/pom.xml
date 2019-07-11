@@ -18,7 +18,9 @@
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
-
+    <properties>
+        <docker.image.prefix>springboot</docker.image.prefix>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -65,11 +67,11 @@
                     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
                     <version>RELEASE</version>
                 </dependency>-->
-   <!--     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.1.0.RELEASE</version>
-        </dependency>-->
+        <!--     <dependency>
+                 <groupId>org.springframework.boot</groupId>
+                 <artifactId>spring-boot-starter-web</artifactId>
+                 <version>2.1.0.RELEASE</version>
+             </dependency>-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -86,11 +88,7 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>com.wwg</groupId>
-            <artifactId>basic-package-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring</artifactId>
@@ -101,14 +99,14 @@
             <artifactId>java-jwt</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <!--<dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-        </dependency>-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+        <!--      <dependency>
+                  <groupId>com.rabbitmq</groupId>
+                  <artifactId>amqp-client</artifactId>
+              </dependency>-->
+        <!--    <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-amqp</artifactId>
+            </dependency>-->
         <!-- shiro权限控制框架 -->
         <dependency>
             <groupId>org.apache.shiro</groupId>
@@ -125,7 +123,40 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.wwg</groupId>
+            <artifactId>basic-package-common</artifactId>
+            <version>0.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Docker maven plugin -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.13</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+            <!-- Docker maven plugin -->
+        </plugins>
+    </build>
 </project>

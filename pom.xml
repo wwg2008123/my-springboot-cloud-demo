@@ -19,13 +19,13 @@
 
     <modules>
         <module>spring-config-git</module>
-        <module>config-client-git</module>
         <module>basic-package-common</module>
         <module>springcloudeurekademo/service-demo01</module>
         <module>springcloudeurekademo/service-demo02</module>
-        <module>springcloudeurekademo/service-register-center</module>
+        <module>springcloudeurekademo/service-demo03</module>
+       <!-- <module>springcloudeurekademo/service-register-center</module>-->
         <module>springcloudeurekademo/service-consumer-demo01</module>
-        <module>sleuth</module>
+
     </modules>
 
     <properties>
@@ -75,10 +75,18 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
+
+        <!--引入的zipkin依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <version>2.1.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
     <build>
+        <pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -87,16 +95,17 @@
                 <configuration>
                     <fork>true</fork>
                 </configuration>
-<!--                <dependencies>
-                    &lt;!&ndash;spring 热部署&ndash;&gt;
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>springloaded</artifactId>
-                        <version>1.2.0.M1</version>
-                    </dependency>
-                </dependencies>-->
+                <!--                <dependencies>
+                                    &lt;!&ndash;spring 热部署&ndash;&gt;
+                                    <dependency>
+                                        <groupId>org.springframework</groupId>
+                                        <artifactId>springloaded</artifactId>
+                                        <version>1.2.0.M1</version>
+                                    </dependency>
+                                </dependencies>-->
             </plugin>
         </plugins>
+        </pluginManagement>
     </build>
 
     <repositories>

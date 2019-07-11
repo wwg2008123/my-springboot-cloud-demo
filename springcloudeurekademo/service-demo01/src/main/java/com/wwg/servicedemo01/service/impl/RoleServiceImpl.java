@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleServiceImpl implements RoleService {
     @Override
-    public Role  getRoleByUserNo(String userNo) {
+    public Role getRoleByUserNo(String userNo) {
 
         return null;
     }

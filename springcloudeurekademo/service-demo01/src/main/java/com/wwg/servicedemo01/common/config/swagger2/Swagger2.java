@@ -20,7 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class Swagger2 implements WebMvcConfigurer {
 
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
@@ -30,7 +30,7 @@ public class Swagger2 implements WebMvcConfigurer {
 
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("spring boot 利用swagger 构建api文件")
                 .description("简单优雅的restfun风格，http://blog.csdn.net/saytime")
@@ -38,6 +38,7 @@ public class Swagger2 implements WebMvcConfigurer {
                 .version("1.0")
                 .build();
     }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
        /* registry.addResourceHandler("/**")

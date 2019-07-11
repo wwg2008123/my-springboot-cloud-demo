@@ -51,7 +51,7 @@ public interface Cons {
      * 订阅消息的类型
      */
     /**
-     *日期
+     * 日期
      */
     String LASTDAY_YEAR = "1231";
 
@@ -113,14 +113,14 @@ public interface Cons {
     String SZ001_ZW = "上证指数";
     String ZXB_ZW = "中小板指";
     String CYBZ_ZW = "创业板指";
-    String CSI_BOND_NEW_ZW= "中证全债";
+    String CSI_BOND_NEW_ZW = "中证全债";
     /**
      * 期权分类
      */
-    String OPTION_GOU ="购";
-    String OPTION_GU ="沽";
-    String OPTION_BUY ="买入";
-    String OPTION_SELL ="卖出";
+    String OPTION_GOU = "购";
+    String OPTION_GU = "沽";
+    String OPTION_BUY = "买入";
+    String OPTION_SELL = "卖出";
     /**
      * 市场缩写
      */
@@ -266,7 +266,7 @@ public interface Cons {
     /**
      * 基准初始值
      */
-    Double INITIA_LIZE=1000D;
+    Double INITIA_LIZE = 1000D;
 
     /**
      * 申万行业分类

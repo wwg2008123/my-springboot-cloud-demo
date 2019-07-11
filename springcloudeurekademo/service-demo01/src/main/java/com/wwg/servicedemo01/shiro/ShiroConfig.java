@@ -20,21 +20,25 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
- /*   *//**
+    /*   */
+
+    /**
      * redis缓存方案
+     *
      * @return
      */
     @Bean
-    public CacheManager shiroRedisCacheManager(){
+    public CacheManager shiroRedisCacheManager() {
         return new RedisCacheManager();
     }
 
     /**
      * redis缓存方案
+     *
      * @return
      */
     @Bean
-    public ShiroRealm shiroRealm(){
+    public ShiroRealm shiroRealm() {
         ShiroRealm realm = new ShiroRealm();
         // 根据情况使用缓存器
         realm.setCacheManager(shiroRedisCacheManager());
@@ -43,13 +47,14 @@ public class ShiroConfig {
 
     /**
      * 安全管理配置
+     *
      * @return
      */
     @Bean
-    public SecurityManager defalutWebSecurityManager(){
+    public SecurityManager defalutWebSecurityManager() {
 
         // DefaultSecurityManager defaultSecurityManager = new  DefaultSecurityManager();
-        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager ();
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //使用自己的realm
         securityManager.setRealm(shiroRealm());
 
@@ -62,29 +67,30 @@ public class ShiroConfig {
 
 
     /**
-     *配置shiro的拦截器链工厂,默认会拦截所有请求，并且不可配置
+     * 配置shiro的拦截器链工厂,默认会拦截所有请求，并且不可配置
+     *
      * @return
      */
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean() {
         ShiroFilterFactoryBean filterFactoryBean = new ShiroFilterFactoryBean();
         Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwt",new ShiroJwtFilter());
+        filterMap.put("jwt", new ShiroJwtFilter());
         filterFactoryBean.setFilters(filterMap);
         // 配置安全管理(必须)
         filterFactoryBean.setSecurityManager(defalutWebSecurityManager());
         // 配置登陆的地址
-      filterFactoryBean.setLoginUrl("/user/login");// 未登录时候跳转URL,如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
+        filterFactoryBean.setLoginUrl("/user/login");// 未登录时候跳转URL,如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
    /*       filterFactoryBean.setSuccessUrl("/welcome.do");// 成功后欢迎页面
         filterFactoryBean.setUnauthorizedUrl("/403.do");// 未认证页面*/
         // 配置拦截地址和拦截器  // 必须使用LinkedHashMap,因为拦截有先后顺序
-        Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
+        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-        filterChainDefinitionMap.put("/userNoLogin","anon"); // 未登录跳转页面不设权限认证
-        filterChainDefinitionMap.put("/login","anon");  // 登录接口不设置权限认真
-        filterChainDefinitionMap.put("/logout","anon"); // 登出不需要认证
-        filterChainDefinitionMap.put("/druid/**","anon");
-        filterChainDefinitionMap.put("/static","anon");
+        filterChainDefinitionMap.put("/userNoLogin", "anon"); // 未登录跳转页面不设权限认证
+        filterChainDefinitionMap.put("/login", "anon");  // 登录接口不设置权限认真
+        filterChainDefinitionMap.put("/logout", "anon"); // 登出不需要认证
+        filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/static", "anon");
 
         filterChainDefinitionMap.put("/webjars/**", "anon");
         filterChainDefinitionMap.put("/swagger-ui.html", "anon");
@@ -98,7 +104,7 @@ public class ShiroConfig {
     /*    filterChainDefinitionMap.put("/user/**", "roles[ROLE_USER],perms[query]");// /user/下面的需要ROLE_USER角色或者query权限才能访问
         filterChainDefinitionMap.put("/admin/**", "perms[ROLE_ADMIN]");// /admin/下面的所有需要ROLE_ADMIN的角色才能访问
 */
-       // filterChainDefinitionMap.put("/user/**", "roles[admin] ");
+        // filterChainDefinitionMap.put("/user/**", "roles[admin] ");
 
         // 剩下的其他资源地址全部需要用户认证后才能访问
         // 所有请求通过我们自己的JWT Filter
@@ -137,11 +143,12 @@ public class ShiroConfig {
 
     /**
      * 开启shiro aop注解支持.
-     *  使用代理方式;所以需要开启代码支持;
+     * 使用代理方式;所以需要开启代码支持;
+     *
      * @return
      */
     @Bean
-    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor( ) {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
         AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
         advisor.setSecurityManager(defalutWebSecurityManager());
         return advisor;

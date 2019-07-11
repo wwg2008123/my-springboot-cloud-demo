@@ -1,3 +1,4 @@
+/*
 package com.wwg.servicedemo01.common.redis;
 
 import cache.RedisProperties;
@@ -11,3 +12,4 @@ public class RedisImplServer extends RedisServiceImpl {
         super(redisProperties);
     }
 }
+*/

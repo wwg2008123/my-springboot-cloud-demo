@@ -10,6 +10,7 @@ import java.util.Set;
 public interface RedisService {
     /**
      * publish 发布消息
+     *
      * @param channel
      * @param msg
      * @return
@@ -18,6 +19,7 @@ public interface RedisService {
 
     /**
      * 订阅消息
+     *
      * @param jedisPubSub
      * @param channels
      */
@@ -25,6 +27,7 @@ public interface RedisService {
 
     /**
      * key是否存在
+     *
      * @param key
      * @return
      */
@@ -34,6 +37,7 @@ public interface RedisService {
 
     /**
      * set
+     *
      * @param key
      * @param value
      * @return
@@ -42,6 +46,7 @@ public interface RedisService {
 
     /**
      * get
+     *
      * @param key
      * @return
      */
@@ -49,6 +54,7 @@ public interface RedisService {
 
     /**
      * del
+     *
      * @param keys
      * @return
      */
@@ -56,6 +62,7 @@ public interface RedisService {
 
     /**
      * mget
+     *
      * @param keys
      * @return
      */
@@ -63,6 +70,7 @@ public interface RedisService {
 
     /**
      * hset
+     *
      * @param hKey
      * @param vKey
      * @param val
@@ -72,6 +80,7 @@ public interface RedisService {
 
     /**
      * hmset
+     *
      * @param key
      * @param valMap
      * @return
@@ -80,6 +89,7 @@ public interface RedisService {
 
     /**
      * hmget
+     *
      * @param key
      * @param fields
      * @return
@@ -88,6 +98,7 @@ public interface RedisService {
 
     /**
      * hget
+     *
      * @param key
      * @param field
      * @return
@@ -96,6 +107,7 @@ public interface RedisService {
 
     /**
      * hexists
+     *
      * @param key
      * @param field
      * @return
@@ -104,6 +116,7 @@ public interface RedisService {
 
     /**
      * hgetAll
+     *
      * @param key
      * @return
      */
@@ -111,6 +124,7 @@ public interface RedisService {
 
     /**
      * hkeys
+     *
      * @param key
      * @return
      */
@@ -118,6 +132,7 @@ public interface RedisService {
 
     /**
      * sadd
+     *
      * @param key
      * @param vals
      * @return
@@ -126,6 +141,7 @@ public interface RedisService {
 
     /**
      * srem
+     *
      * @param key
      * @param member
      * @return
@@ -135,6 +151,7 @@ public interface RedisService {
 
     /**
      * smembers
+     *
      * @param key
      * @return
      */
@@ -142,6 +159,7 @@ public interface RedisService {
 
     /**
      * sIsMember
+     *
      * @param key
      * @param member
      * @return
@@ -150,6 +168,7 @@ public interface RedisService {
 
     /**
      * sunion
+     *
      * @param keys
      * @return
      */
@@ -157,6 +176,7 @@ public interface RedisService {
 
     /**
      * sunionstore
+     *
      * @param dstKey
      * @param key
      * @return
@@ -165,6 +185,7 @@ public interface RedisService {
 
     /**
      * blpop
+     *
      * @param timeout
      * @param key
      * @return
@@ -173,6 +194,7 @@ public interface RedisService {
 
     /**
      * rpush
+     *
      * @param key
      * @param values
      * @return
@@ -181,6 +203,7 @@ public interface RedisService {
 
     /**
      * zadd
+     *
      * @param key
      * @param score
      * @param member
@@ -190,6 +213,7 @@ public interface RedisService {
 
     /**
      * zadd
+     *
      * @param key
      * @param members
      * @return
@@ -198,6 +222,7 @@ public interface RedisService {
 
     /**
      * zrangeByScore
+     *
      * @param key
      * @param min
      * @param max
@@ -207,6 +232,7 @@ public interface RedisService {
 
     /**
      * zscore
+     *
      * @param key
      * @param member
      * @return
@@ -215,6 +241,7 @@ public interface RedisService {
 
     /**
      * zremrangeByScore
+     *
      * @param key
      * @param start
      * @param end
@@ -223,7 +250,8 @@ public interface RedisService {
     Long zremrangeByScore(String key, Double start, Double end);
 
     /**
-     *  zRevRangeByScore
+     * zRevRangeByScore
+     *
      * @param key
      * @param min
      * @param max
@@ -233,6 +261,7 @@ public interface RedisService {
 
     /**
      * zrank
+     *
      * @param key
      * @param member
      * @return
@@ -241,6 +270,7 @@ public interface RedisService {
 
     /**
      * zrange
+     *
      * @param key
      * @param start
      * @param end
@@ -250,6 +280,7 @@ public interface RedisService {
 
     /**
      * zrangeByScoreWithScores
+     *
      * @param key
      * @param start
      * @param end
@@ -261,6 +292,7 @@ public interface RedisService {
 
     /**
      * zRevRange
+     *
      * @param key
      * @param start
      * @param end
@@ -270,6 +302,7 @@ public interface RedisService {
 
     /**
      * zRevRangeByScoreWithScores
+     *
      * @param key
      * @param start
      * @param end

@@ -52,10 +52,10 @@ public class RedisServiceImpl implements RedisService {
 
     @Override
     public void recordNewKeyToAllKeySet(String rkeyOfAllKeySet, String newRkey) {
-        if(!sIsMember(rkeyOfAllKeySet,
+        if (!sIsMember(rkeyOfAllKeySet,
                 newRkey)) {
             long saddRet = sadd(rkeyOfAllKeySet, newRkey);
-            log.info("sadd newkey {} to {} allKeySet, ret: {}",newRkey, rkeyOfAllKeySet, saddRet);
+            log.info("sadd newkey {} to {} allKeySet, ret: {}", newRkey, rkeyOfAllKeySet, saddRet);
         }
     }
 
@@ -120,9 +120,10 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public Long srem(String key, String...member) {
+    public Long srem(String key, String... member) {
         return this.jedisCluster.srem(key, member);
     }
+
     @Override
     public Boolean sIsMember(String key, String member) {
         return this.jedisCluster.sismember(key, member);
@@ -154,7 +155,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public Long sunionstore(String dstKey, String...key) {
+    public Long sunionstore(String dstKey, String... key) {
         return this.jedisCluster.sunionstore(dstKey, key);
     }
 
@@ -197,7 +198,6 @@ public class RedisServiceImpl implements RedisService {
     public Set<String> zRevRangeByScore(String key, Double max, Double min) {
         return this.jedisCluster.zrevrangeByScore(key, max, min);
     }
-
 
 
     @Override

@@ -15,9 +15,9 @@ public class LogFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         long start = System.currentTimeMillis();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("filter1==>befor doFilter:"+ format.format(new Date()));
-        filterChain.doFilter(servletRequest,servletResponse);
-        System.out.println("filter1==>after doFilter:"+ format.format(new Date()));
+        System.out.println("filter1==>befor doFilter:" + format.format(new Date()));
+        filterChain.doFilter(servletRequest, servletResponse);
+        System.out.println("filter1==>after doFilter:" + format.format(new Date()));
 
     }
 

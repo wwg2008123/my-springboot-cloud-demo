@@ -9,14 +9,14 @@ public class DbContextHolder {
     private static Logger log = LoggerFactory.getLogger(DbContextHolder.class);
     private static final ThreadLocal<String> local = new ThreadLocal<>();
 
-    public static ThreadLocal<String> getLocal(){
+    public static ThreadLocal<String> getLocal() {
         return local;
     }
 
     /**
      * 读可能是多个库
      */
-    public static void read(){
+    public static void read() {
         local.set(DataSourceEnum.read.getType());
         log.info("数据库切换到读库...");
     }
@@ -24,7 +24,7 @@ public class DbContextHolder {
     /**
      * 写只有一个库
      */
-    public static void write(){
+    public static void write() {
         local.set(DataSourceEnum.write.getType());
         log.info("数据库切换到写库...");
     }

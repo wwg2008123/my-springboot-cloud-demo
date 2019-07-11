@@ -30,37 +30,39 @@ public class UserServiceImpl implements UserService {
     @Override
     public BaseResult getUser(String param) {
         BaseResult baseResult = new BaseResult();
-        JSONObject json = JsonUtil.validateParam(baseResult,param,"");
-        if(!baseResult.code.equals("1")){
+        JSONObject json = JsonUtil.validateParam(baseResult, param, "");
+        if (!baseResult.code.equals("1")) {
             return baseResult;
         }
-        Map<String,Object> map = json;
+        Map<String, Object> map = json;
 
         User user = userMapper.getUser(map);
         baseResult.setData(user);
         return baseResult;
     }
+
     @WriteDSAnno
     @Override
     public BaseResult addUser(String param) {
         BaseResult baseResult = new BaseResult();
-        JSONObject json = JsonUtil.validateParam(baseResult,param,"");
-        if(!baseResult.code.equals("1")){
+        JSONObject json = JsonUtil.validateParam(baseResult, param, "");
+        if (!baseResult.code.equals("1")) {
             return baseResult;
         }
-        Map<String,Object> map = new HashMap();
+        Map<String, Object> map = new HashMap();
         String name = json.getString("name");
         int age = json.getInteger("age");
-        map.put("name",name);
-        map.put("age",age);
+        map.put("name", name);
+        map.put("age", age);
         int rows = userMapper.addUser(map);
         baseResult.setData(rows);
         return baseResult;
     }
-   public Map<String,Object> checkMobileAndPasswd(JSONObject requestJson)throws Exception{
+
+    public Map<String, Object> checkMobileAndPasswd(JSONObject requestJson) throws Exception {
         String userNo = requestJson.getString("userNo");
         String password = requestJson.getString("password");
-        String token = JWTUtil.sign(userNo,password);
+        String token = JWTUtil.sign(userNo, password,null);
         //自定User数据
         User user = new User();
         user.setUserNo(userNo);
@@ -70,9 +72,10 @@ public class UserServiceImpl implements UserService {
         user.setRoles(null);
         user.setToken(token);
         return getLoginUserAndMenuInfo(user);
-   }
-    public Map<String,Object> getLoginUserAndMenuInfo(User user){
-        Map<String,Object> result = new HashMap<>();
+    }
+
+    public Map<String, Object> getLoginUserAndMenuInfo(User user) {
+        Map<String, Object> result = new HashMap<>();
         //自定义角色数据
         Role role = new Role();
         role.setRoleCode("001");
@@ -81,16 +84,16 @@ public class UserServiceImpl implements UserService {
         roles.add(role);
         user.setRoles(roles);
         List<Menu> menus = new ArrayList<>();
-        Menu menu =  new Menu();
+        Menu menu = new Menu();
         menu.setId(1);
         menu.setType(0);
         menu.setMenuName("用户信息");
         menu.setMenuCode("user:info");
         menu.setUrl("/user/info");
         menus.add(menu);
-        result.put("user",user);
-        result.put("roleList",roles);
-        result.put("menuList",menus);
+        result.put("user", user);
+        result.put("roleList", roles);
+        result.put("menuList", menus);
         return result;
     }
 

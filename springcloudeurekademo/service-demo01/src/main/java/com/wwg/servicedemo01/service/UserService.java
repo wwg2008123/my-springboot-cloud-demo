@@ -9,19 +9,22 @@ import java.util.Map;
 public interface UserService {
     /**
      * 查询用户
+     *
      * @return
      */
     BaseResult getUser(String param);
 
     /**
      * 新增用户
+     *
      * @param param
      * @return
      */
     BaseResult addUser(String param);
 
     User getUserByLoginName(String loginName);
-    Map<String,Object> getLoginUserAndMenuInfo(User user);
 
-    Map<String,Object> checkMobileAndPasswd(JSONObject requestJson)throws Exception;
+    Map<String, Object> getLoginUserAndMenuInfo(User user);
+
+    Map<String, Object> checkMobileAndPasswd(JSONObject requestJson) throws Exception;
 }

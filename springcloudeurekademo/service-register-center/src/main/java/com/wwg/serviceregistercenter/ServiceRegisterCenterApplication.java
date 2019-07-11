@@ -2,21 +2,22 @@ package com.wwg.serviceregistercenter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
-@EnableEurekaServer
+
+/*@EnableEurekcaServer*/
 @SpringBootApplication
 public class ServiceRegisterCenterApplication extends Thread {
     volatile boolean flag = false;
-    int i=0;
+    int i = 0;
+
     @Override
-    public void run(){
-        while (!flag){
+    public void run() {
+        while (!flag) {
             i++;
         }
 

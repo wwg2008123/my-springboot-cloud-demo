@@ -29,17 +29,18 @@ import java.util.List;
 @Configuration
 @ConditionalOnClass(JedisCluster.class)
 @EnableCaching
-public class RedisConfig{
+public class RedisConfig {
     @Resource
     private RedisProperties redisProperties;
 
 
     /**
      * 配置 Redis 连接池信息
+     *
      * @return
      */
     @Bean
-    public JedisPoolConfig getJedisPoolConfig(){
+    public JedisPoolConfig getJedisPoolConfig() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxIdle(redisProperties.getMaxIdle());
         poolConfig.setMaxTotal(redisProperties.getMaxTotal());
@@ -51,15 +52,16 @@ public class RedisConfig{
 
     /**
      * 配置 Redis Cluster 信息
+     *
      * @return
      */
     @Bean
-    public RedisClusterConfiguration getJedisCluster(){
+    public RedisClusterConfiguration getJedisCluster() {
         RedisClusterConfiguration redisClusterConfiguration = new RedisClusterConfiguration();
         List<RedisNode> nodes = new ArrayList<>();
-        for (String s : redisProperties.getIntanceUrlList()){
+        for (String s : redisProperties.getIntanceUrlList()) {
             String[] hp = s.split(":");
-            nodes.add(new RedisNode(hp[0],Integer.parseInt(hp[1])));
+            nodes.add(new RedisNode(hp[0], Integer.parseInt(hp[1])));
         }
         redisClusterConfiguration.setClusterNodes(nodes);
         return redisClusterConfiguration;
@@ -67,22 +69,23 @@ public class RedisConfig{
 
     /**
      * 配置 Redis 连接工厂
+     *
      * @return
      */
     @Bean
-    public RedisConnectionFactory getJedisConnectionFactory(){
-        JedisConnectionFactory factory = new JedisConnectionFactory(getJedisCluster(),getJedisPoolConfig());
+    public RedisConnectionFactory getJedisConnectionFactory() {
+        JedisConnectionFactory factory = new JedisConnectionFactory(getJedisCluster(), getJedisPoolConfig());
         return factory;
     }
 
     /**
      * 设置数据存入redis 的序列化方式
-     *  redisTemplate序列化默认使用的jdkSerializeable
-     *  存储二进制字节码，导致key会出现乱码，所以自定义序列化类
+     * redisTemplate序列化默认使用的jdkSerializeable
+     * 存储二进制字节码，导致key会出现乱码，所以自定义序列化类
      */
     @Bean
-    public RedisTemplate<Object,Object> redisTemplate( ){
-        RedisTemplate<Object,Object> redisTemplate = new RedisTemplate<>();
+    public RedisTemplate<Object, Object> redisTemplate() {
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(getJedisConnectionFactory());
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper objectMapper = new ObjectMapper();

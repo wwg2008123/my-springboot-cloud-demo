@@ -10,37 +10,38 @@ public class JsonUtil {
 
     /**
      * 验证是否为json格式
+     *
      * @param param
      * @return
      */
-    public static boolean isJson(String param){
+    public static boolean isJson(String param) {
         boolean flag = true;
-        try{
-            Object obj =  JSONObject.parse(param);
-            if(obj instanceof JSONObject || obj instanceof JSONArray){
+        try {
+            Object obj = JSONObject.parse(param);
+            if (obj instanceof JSONObject || obj instanceof JSONArray) {
                 flag = true;
-            }else{
+            } else {
                 flag = false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             flag = false;
         }
         return flag;
     }
 
-    public static JSONObject validateParam(BaseResult baseResult,String param,String... params){
+    public static JSONObject validateParam(BaseResult baseResult, String param, String... params) {
         JSONObject jsonObject = null;
-        if(param.equals("") || param.equals(null)){
+        if (param.equals("") || param.equals(null)) {
             return jsonObject;
         }
         jsonObject = JSON.parseObject(param);
-        if(!params.equals("") && !params.equals(null)) {
+        if (!params.equals("") && !params.equals(null)) {
 
             //变量参数数组
             for (int i = 0; i < params.length; i++) {
                 //key 名称
                 String paramKey = params[i];
-                if(paramKey.equals("") || paramKey.equals(null)){
+                if (paramKey.equals("") || paramKey.equals(null)) {
                     continue;
                 }
                 //key对应的值类型

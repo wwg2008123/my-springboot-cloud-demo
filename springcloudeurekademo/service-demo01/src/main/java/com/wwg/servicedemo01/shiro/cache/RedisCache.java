@@ -33,7 +33,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
 
     @Override
     public V get(K key) throws CacheException {
-        log.debug("Shiro从缓存中获取数据KEY值["+key+"]");
+        log.debug("Shiro从缓存中获取数据KEY值[" + key + "]");
         redisTemplate.boundValueOps(getCacheKey(key)).expire(globExpire, TimeUnit.MINUTES);
         return redisTemplate.boundValueOps(getCacheKey(key)).get();
     }
@@ -78,7 +78,7 @@ public class RedisCache<K, V> implements Cache<K, V> {
         return list;
     }
 
-    private K getCacheKey(Object k){
-        return (K)(this.cacheKey + k);
+    private K getCacheKey(Object k) {
+        return (K) (this.cacheKey + k);
     }
 }

@@ -6,7 +6,7 @@ public class JwtToken implements AuthenticationToken {
     //密钥
     private String token;
 
-    public JwtToken(String token){
+    public JwtToken(String token) {
         this.token = token;
     }
 

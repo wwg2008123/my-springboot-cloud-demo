@@ -33,7 +33,7 @@ public class MybatisConfig {
 
     @Bean
     @ConditionalOnMissingBean
-    public SqlSessionFactory sqlSessionFactory(ApplicationContext context) throws Exception{
+    public SqlSessionFactory sqlSessionFactory(ApplicationContext context) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(roundRobinDataSouceProxy(context));
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
@@ -47,18 +47,19 @@ public class MybatisConfig {
 
     /**
      * 有多少个数据源就要配置多少个bean
+     *
      * @param context
      * @return
      */
     @Bean
-    public AbstractRoutingDataSource roundRobinDataSouceProxy(ApplicationContext context){
+    public AbstractRoutingDataSource roundRobinDataSouceProxy(ApplicationContext context) {
         int size = Integer.parseInt(dataSourceSize);
         MyAbstractRoutingDataSource proxy = new MyAbstractRoutingDataSource(size);
-        Map<Object,Object> targetDataSource = new HashMap<>();
+        Map<Object, Object> targetDataSource = new HashMap<>();
         DataSource writeDataSource = (DataSource) context.getBean("writeDataSource");
         List<DataSource> readDataSources = (List<DataSource>) context.getBean("readDataSources");
-        for(int i=0;i<size;i++){
-            targetDataSource.put(i,readDataSources.get(i));
+        for (int i = 0; i < size; i++) {
+            targetDataSource.put(i, readDataSources.get(i));
         }
         proxy.setDefaultTargetDataSource(writeDataSource);
         proxy.setTargetDataSources(targetDataSource);

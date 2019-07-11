@@ -13,11 +13,11 @@ public class ServiceDemo01ApplicationTests {
     public void contextLoads() {
     }
 
-    public static void main(String[] args){
-        try{
+    public static void main(String[] args) {
+        try {
             System.out.println(1);
             throw new Exception("exception test");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(2);
             e.printStackTrace();
         }

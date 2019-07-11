@@ -15,6 +15,7 @@ public class RedisProperties {
     private int maxWait;
 
     private List<String> intanceUrlList;
+
     public int getMaxIdle() {
         return maxIdle;
     }

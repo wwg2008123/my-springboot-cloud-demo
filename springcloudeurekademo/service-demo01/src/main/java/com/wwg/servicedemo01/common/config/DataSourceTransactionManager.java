@@ -17,9 +17,9 @@ public class DataSourceTransactionManager extends DataSourceTransactionManagerAu
     @Resource(name = "writeDataSource")
     private DataSource dataSource;
 
-    @Bean(name="transactionManager")
-    public org.springframework.jdbc.datasource.DataSourceTransactionManager transactionManager(){
-        return  new org.springframework.jdbc.datasource.DataSourceTransactionManager(dataSource);
+    @Bean(name = "transactionManager")
+    public org.springframework.jdbc.datasource.DataSourceTransactionManager transactionManager() {
+        return new org.springframework.jdbc.datasource.DataSourceTransactionManager(dataSource);
     }
 
 }

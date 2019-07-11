@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Data
 public class BaseResult {
-    public  String code="1";
+    public String code = "1";
     private String message;
     private Object data;
 
