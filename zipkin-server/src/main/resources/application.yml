@@ -1,0 +1,10 @@
+server:
+  port: 9411
+  address: 192.168.65.130
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
