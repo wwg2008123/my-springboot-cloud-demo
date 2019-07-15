@@ -13,6 +13,6 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8001/eureka/
+      defaultZone: http://peer1:8002/eureka/,http://peer2:8003/eureka/
 server:
   port: 9003
