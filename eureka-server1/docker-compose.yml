@@ -3,12 +3,12 @@ services:
     peer1:
       image: my-springcloud/eureka-server1
       ports:
-        - 8002:8001
+        - 8002:8002
       environment:
         - spring.profiles.active=peer1
     peer2:
       image: my-springcloud/eureka-server1
       ports:
-        - 8003:8001
+        - 8003:8003
       environment:
         - spring.profiles.active=peer2

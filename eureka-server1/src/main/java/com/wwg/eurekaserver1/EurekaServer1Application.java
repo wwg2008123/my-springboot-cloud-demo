@@ -10,6 +10,7 @@ public class EurekaServer1Application {
 
     public static void main(String[] args) {
         SpringApplication.run(EurekaServer1Application.class, args);
+        System.out.println("注册中心服务启动！");
     }
 
 }

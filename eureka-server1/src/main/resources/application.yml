@@ -1,5 +1,4 @@
-server:
-  port: 8001
+
 
 spring:
   application:
@@ -8,6 +7,9 @@ spring:
     active: dev
 
 ---
+server:
+  port: 8001
+
 spring:
   profiles: dev
 
@@ -22,6 +24,9 @@ eureka:
     prefer-ip-address: true
 
 ---
+server:
+  port: 8002
+
 spring:
   profiles: peer1
 
@@ -36,14 +41,17 @@ eureka:
     #综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。
     enable-self-preservation: false
     #eureka server清理无效节点的时间间隔，默认60000毫秒，即60秒
-    eviction-interval-timer-in-ms: 60
+    eviction-interval-timer-in-ms: 60000
   client:
     register-with-eureka: false   #是否注册自己，没有必要注册自己
     fetch-registry: false        #是否从eureka服务器获取注册
     service-url:
-      defaultZone: http://peer2:${server.port}/eureka/          #注册中心访问路径
+      defaultZone: http://peer2:8003/eureka/          #注册中心访问路径
     registry-fetch-interval-seconds: 30     #表示eureka client间隔多久去拉取服务注册信息，默认为30秒
 ---
+server:
+  port: 8003
+
 spring:
   profiles: peer2
 
@@ -58,10 +66,10 @@ eureka:
     #综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。
     enable-self-preservation: false
     #eureka server清理无效节点的时间间隔，默认60000毫秒，即60秒
-    eviction-interval-timer-in-ms: 60
+    eviction-interval-timer-in-ms: 60000
   client:
     register-with-eureka: false   #是否注册自己，没有必要注册自己
     fetch-registry: false        #是否从eureka服务器获取注册
     service-url:
-      defaultZone: http://peer1:${server.port}/eureka/          #注册中心访问路径
+      defaultZone: http://peer1:8002/eureka/          #注册中心访问路径
     registry-fetch-interval-seconds: 30     #表示eureka client间隔多久去拉取服务注册信息，默认为30秒

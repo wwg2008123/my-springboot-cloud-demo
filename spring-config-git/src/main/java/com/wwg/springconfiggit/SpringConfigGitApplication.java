@@ -12,5 +12,6 @@ public class SpringConfigGitApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringConfigGitApplication.class, args);
+        System.out.println("配置中心服务启动！");
     }
 }
